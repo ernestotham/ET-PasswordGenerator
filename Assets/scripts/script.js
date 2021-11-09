@@ -54,7 +54,7 @@ function generatePassword(){
             break;}
 
         else if(!containsNumbers(pwdLength)){
-              window.alert("Password length can only be a number between 8 -128");
+              window.alert("Password length can only be a number between 8 -128",'20');
               pwdLength = Number(window.prompt('Enter a number for the password length between 8 and 128'));
         }
 
@@ -63,7 +63,7 @@ function generatePassword(){
               //console.log("hello " +pwdLength);
               //console.log("type is : " +typeof pwdLength);
               window.alert("Length can only be between 8-128");
-              pwdLength = Number(window.prompt('Enter password length', '8-128'));
+              pwdLength = Number(window.prompt('Enter password length', '20'));
             } //end else condition
       }//end while loop
    
