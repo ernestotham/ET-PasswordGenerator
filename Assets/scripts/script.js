@@ -34,17 +34,23 @@ function randomSpecialChar(){
 function generatePassword(){
   var secret = '';
   var brakepoint = true;
-  var pwdLength = Number(window.prompt('Enter password length','8-128'));
+  var pwdLength = Number(window.prompt('Enter password length','20'));
    
       while (brakepoint ==true) {
          
-        if(pwdLength === 0){return;}
+        if(pwdLength === 0){
+          console.log("brakepoint checking 0 " +pwdLength);
+          //pwdLength = Number(window.prompt('Enter password length','8-128'));
+          return "Your Secure Password";
+        }
 
         else if(pwdLength === null){
-          return;
+          console.log("brakepoint checking null" +pwdLength);
+          return "Your Secure Password";
         }
 
         else if(pwdLength > 7 || pwdLength < 129){
+          console.log("brakepoint checking >7 <128" +pwdLength);
             break;}
 
         else if(!containsNumbers(pwdLength)){
@@ -52,7 +58,8 @@ function generatePassword(){
               pwdLength = Number(window.prompt('Enter a number for the password length between 8 and 128'));
         }
 
-        else if (pwdLength < 8 || pwdLength > 128){
+        else if(pwdLength < 8 || pwdLength > 128){
+             console.log("brakepoint checking <8 > 128" +pwdLength);
               //console.log("hello " +pwdLength);
               //console.log("type is : " +typeof pwdLength);
               window.alert("Length can only be between 8-128");
