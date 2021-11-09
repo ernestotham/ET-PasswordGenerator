@@ -1,6 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+
+function containsNumbers(str){
+  var regexp = /\d/g;
+  return regexp.test(str);
+};
+
+
 function randomUpper(){
   var UpperLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   return UpperLetter[Math.floor(Math.random()*UpperLetter.length)];
@@ -26,30 +33,36 @@ function randomSpecialChar(){
 
 function generatePassword(){
   var secret = '';
-
+  var brakepoint = true;
   var pwdLength = Number(window.prompt('Enter password length','8-128'));
-    if (pwdLength === null){
-
-      return;
-    }
-    
-    else {
-
-      while (pwdLength < 8 || pwdLength > 128) {
+   
+      while (brakepoint ==true) {
          
-        if(pwdLength === 0){break;}
+        if(pwdLength === 0){return;}
 
-        else{
-              console.log("hello " +pwdLength);
-              console.log("type is : " +typeof pwdLength);
+        else if(pwdLength === null){
+          return;
+        }
+
+        else if(pwdLength > 7 || pwdLength < 129){
+            break;}
+
+        else if(!containsNumbers(pwdLength)){
+              window.alert("Password length can only be a number between 8 -128");
+              pwdLength = Number(window.prompt('Enter a number for the password length between 8 and 128'));
+        }
+
+        else if (pwdLength < 8 || pwdLength > 128){
+              //console.log("hello " +pwdLength);
+              //console.log("type is : " +typeof pwdLength);
               window.alert("Length can only be between 8-128");
               pwdLength = Number(window.prompt('Enter password length', '8-128'));
             } //end else condition
-       }//end while loop
+      }//end while loop
    
-       var pwdLength = Number(window.prompt('Enter password length','8-128'));
+      
 
-    }
+      
 
     
     //option to include in the password generator
