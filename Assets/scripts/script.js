@@ -35,7 +35,8 @@ function generatePassword(){
   var secret = '';
   var brakepoint = true;
   var pwdLength = Number(window.prompt('Enter password length','20'));
-   
+  console.log("initial value: " +pwdLength )
+  console.log(typeof pwdLength)
       while (brakepoint ==true) {
          
         if(pwdLength === 0){
@@ -49,7 +50,7 @@ function generatePassword(){
           return "Your Secure Password";
         }
 
-        else if(pwdLength > 7 || pwdLength < 129){
+        else if(pwdLength > 7 && pwdLength < 129){
           console.log("brakepoint checking >7 <128" +pwdLength);
             break;}
 
