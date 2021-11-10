@@ -125,7 +125,7 @@ function generatePassword(){
       
       console.log("options is null");
       window.alert("At least one type needs to be selected (uppercase, lowercase, numbers, special characters)");
-      generatePassword()
+      writePassword();
           
         
         
@@ -164,7 +164,7 @@ function generatePassword(){
           console.log("secret partial : " +secret)
 
         } //end for loop
-
+        
   }//end of else. condition met at least one type was selected
 
 
