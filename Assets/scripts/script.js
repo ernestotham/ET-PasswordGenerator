@@ -165,19 +165,27 @@ function generatePassword(){
 
         } //end for loop
         
+        
   }//end of else. condition met at least one type was selected
 
 
-      return secret
+  return secret
 
 }//end of function
 
 // Write password to the #password input
 function writePassword() {
+  //debugger
   var password = generatePassword();
+  console.log("return from generate password: "+password)
+  if(!password ==""){
   var passwordText = document.querySelector("#password");
-
+  console.log("writing password to textArea")
+  console.log(passwordText)
   passwordText.value = password;
+  console.log(passwordText)
+  }
+  
 
 }
 
