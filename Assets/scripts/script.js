@@ -89,56 +89,88 @@ function generatePassword(){
 
     
 
-    //selected option array variable
-    if(Cupper ===true){
+    //selected options into  array variable
+    //random assign password value at least one char of the selected type
+    //reduce the length of the password by 1 if type is selected
+
+    if(Cupper){
       options.push('Cupper');
+      secret += randomUpper();
+      pwdLength--;
+      console.log(pwdLength);
+
     }
-    if(Clower ===true){
+    if(Clower){
       options.push('Clower');
+      secret +=  randomLower();
+      pwdLength--;
+      console.log(pwdLength);
     }
-    if(Cnum ===true){
+    if(Cnum){
       options.push('Cnum');
+      secret += randomNumber();
+      pwdLength--;
+      console.log(pwdLength);
     }
-    if(CsChars ===true){
+    if(CsChars){
       options.push('CsChars');
+      secret += randomSpecialChar();
+      pwdLength--;
+      console.log(pwdLength);
     }
 
+    //Check for condition that at least one one type is selected or start over
     console.log("options selected " +options);
-
-    for(var i=0;i <pwdLength; i++ ){
-
-      //random select option (num, uppeLetter, loweletter, symbol)
-
-      //append char to secret
-      opt = options[Math.floor(Math.random()*options.length)];
-      console.log("opt: " + opt);
+    if(options == ""){
       
-      
-          if(opt === 'Cupper'){
-            secret += randomUpper();
-            console.log("secret partial upper : " +secret)
-          }
-          if(opt === 'Clower'){
-            secret += randomLower();
-            console.log("secret partial : lower " +secret)
-          }
-          if(opt === 'Cnum'){
-            secret += randomNumber();
-            console.log("secret partial num : " +secret)
-          }
-          if(opt === 'CsChars'){
-            secret += randomSpecialChar();
-            console.log("secret partial Char: " +secret)
-          }
-
-      console.log("secret partial : " +secret)
-
-    }
+      console.log("options is null");
+      window.alert("At least one type needs to be selected (uppercase, lowercase, numbers, special characters)");
+      generatePassword()
+          
+        
+        
+    }//end if for checking options type was selected
 
 
-  return secret
+    //no type was selected, warn and start over
+  else{
+        //loop to complete random password
+        for(var i=0;i <pwdLength; i++ ){
 
-}
+          //random select option (num, uppeLetter, loweletter, symbol)
+
+          //select at random one of the type and append to secret at random one of the values
+          opt = options[Math.floor(Math.random()*options.length)];
+          console.log("opt: " + opt);
+          
+          
+              if(opt === 'Cupper'){
+                secret += randomUpper();
+                console.log("secret partial upper : " +secret)
+              }
+              if(opt === 'Clower'){
+                secret += randomLower();
+                console.log("secret partial : lower " +secret)
+              }
+              if(opt === 'Cnum'){
+                secret += randomNumber();
+                console.log("secret partial num : " +secret)
+              }
+              if(opt === 'CsChars'){
+                secret += randomSpecialChar();
+                console.log("secret partial Char: " +secret)
+              }
+
+          console.log("secret partial : " +secret)
+
+        } //end for loop
+
+  }//end of else. condition met at least one type was selected
+
+
+      return secret
+
+}//end of function
 
 // Write password to the #password input
 function writePassword() {
