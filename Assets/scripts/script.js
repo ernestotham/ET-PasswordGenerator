@@ -1,30 +1,33 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
+//validate  if string contains numbers using regex
 function containsNumbers(str){
   var regexp = /\d/g;
   return regexp.test(str);
 };
 
-
+//return random a uppercase letter
 function randomUpper(){
   var UpperLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   return UpperLetter[Math.floor(Math.random()*UpperLetter.length)];
 }
 
+//return random lowercase letter
 function randomLower(){
   var LowerLetter = 'abcdefghijklmnopqrstuvwxyz'
   return LowerLetter[Math.floor(Math.random()*LowerLetter.length)];
 
 }
 
+//return random number
 function randomNumber(){
   var Num = '0123456789'
   return Num[Math.floor(Math.random()*Num.length)];
 
 }
 
+//return random special char
 function randomSpecialChar(){
   var SpecialChar = '!@#$%^&*()_+-={}[]:"\';<>?,./`~'
   return SpecialChar[Math.floor(Math.random()*SpecialChar.length)];
@@ -35,30 +38,34 @@ function generatePassword(){
   var secret = '';
   var brakepoint = true;
   var pwdLength = Number(window.prompt('Enter password length','20'));
-  console.log("initial value: " +pwdLength )
-  console.log(typeof pwdLength)
+  //console.log("initial value: " +pwdLength )
+  //console.log(typeof pwdLength)
       while (brakepoint ==true) {
-         
+        
+        //check to see if password length is null 
         if(pwdLength === 0){
-          console.log("brakepoint checking 0 " +pwdLength);
+          //console.log("brakepoint checking 0 " +pwdLength);
           //pwdLength = Number(window.prompt('Enter password length','8-128'));
           return "Your Secure Password";
         }
-
+        //check to see if password length is null 
         else if(pwdLength === null){
-          console.log("brakepoint checking null" +pwdLength);
+          //console.log("brakepoint checking null" +pwdLength);
           return "Your Secure Password";
         }
-
+        //check to see if password length is between the minimum length criteria
+        //This is to brake the loop and continue to generate password
         else if(pwdLength > 7 && pwdLength < 129){
-          console.log("brakepoint checking >7 <128" +pwdLength);
+          //console.log("brakepoint checking >7 <128" +pwdLength);
             break;}
-
+        
+        //check to see if letters were enter for password length 
         else if(!containsNumbers(pwdLength)){
               window.alert("Password length can only be a number between 8 -128",'20');
               pwdLength = Number(window.prompt('Enter a number for the password length between 8 and 128'));
         }
 
+        //check to see if password length is not meeting the criteria and prompt the user again for the right length input
         else if(pwdLength < 8 || pwdLength > 128){
              console.log("brakepoint checking <8 > 128" +pwdLength);
               //console.log("hello " +pwdLength);
@@ -79,13 +86,13 @@ function generatePassword(){
     console.log("Cupper: "+ Cupper);
 
     var Clower = window.confirm("Do you want to include lowercase letters?");
-    console.log("Clower: "+ Clower);
+    //console.log("Clower: "+ Clower);
 
     var Cnum = window.confirm("Do you want to include numbers?");
-    console.log("Cnum: "+ Cnum);
+    //console.log("Cnum: "+ Cnum);
 
     var CsChars = window.confirm("Do you want to include special characters?");
-    console.log("CsChars: "+ CsChars);
+    //console.log("CsChars: "+ CsChars);
 
     
 
@@ -97,30 +104,30 @@ function generatePassword(){
       options.push('Cupper');
       secret += randomUpper();
       pwdLength--;
-      console.log(pwdLength);
+      //console.log(pwdLength);
 
     }
     if(Clower){
       options.push('Clower');
       secret +=  randomLower();
       pwdLength--;
-      console.log(pwdLength);
+      //console.log(pwdLength);
     }
     if(Cnum){
       options.push('Cnum');
       secret += randomNumber();
       pwdLength--;
-      console.log(pwdLength);
+      //console.log(pwdLength);
     }
     if(CsChars){
       options.push('CsChars');
       secret += randomSpecialChar();
       pwdLength--;
-      console.log(pwdLength);
+      //console.log(pwdLength);
     }
 
     //Check for condition that at least one one type is selected or start over
-    console.log("options selected " +options);
+    //console.log("options selected " +options);
     if(options == ""){
       
       console.log("options is null");
@@ -141,27 +148,33 @@ function generatePassword(){
 
           //select at random one of the type and append to secret at random one of the values
           opt = options[Math.floor(Math.random()*options.length)];
-          console.log("opt: " + opt);
+          //console.log("opt: " + opt);
           
-          
+              //if uppercase letter option was selected, reserve at random an uppercase letter and reduce pwd length by 1
               if(opt === 'Cupper'){
                 secret += randomUpper();
                 console.log("secret partial upper : " +secret)
               }
+
+              //if lowercase letter option was selected, reserve at random a lowercase letter and reduce pwd length by 1
               if(opt === 'Clower'){
                 secret += randomLower();
                 console.log("secret partial : lower " +secret)
               }
+
+              //if number option was selected, reserve at random a number and reduce pwd length by 1
               if(opt === 'Cnum'){
                 secret += randomNumber();
                 console.log("secret partial num : " +secret)
               }
+
+              //if special char option was selected, reserve at random an special char and reduce pwd length by 1
               if(opt === 'CsChars'){
                 secret += randomSpecialChar();
                 console.log("secret partial Char: " +secret)
               }
 
-          console.log("secret partial : " +secret)
+          //console.log("secret partial : " +secret)
 
         } //end for loop
         
@@ -178,6 +191,8 @@ function writePassword() {
   //debugger
   var password = generatePassword();
   console.log("return from generate password: "+password)
+
+  //corrected a bug with overwriting password with black when user did not select any type and loop restart hte user to tenter new input 
   if(!password ==""){
   var passwordText = document.querySelector("#password");
   console.log("writing password to textArea")
